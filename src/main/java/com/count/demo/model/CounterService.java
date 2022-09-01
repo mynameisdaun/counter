@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -18,5 +19,9 @@ public class CounterService {
         Counter counter = new Counter();
         counter.setCreated(LocalDateTime.now());
         return counterRepository.save(counter);
+    }
+
+    public List<Counter> check() {
+        return counterRepository.findAll();
     }
 }

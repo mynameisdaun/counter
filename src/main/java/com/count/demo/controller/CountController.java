@@ -1,13 +1,16 @@
 package com.count.demo.controller;
 
+import com.count.demo.model.Counter;
 import com.count.demo.model.CounterService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -25,5 +28,13 @@ public class CountController {
             log.error("{}", LocalDateTime.now());
         }
         return "counter";
+    }
+
+    @GetMapping("/check")
+    public String check(Model model) {
+        List<Counter> counters = counterService.check();
+        model.addAttribute("total",counters.size());
+        model.addAttribute("counters",counters);
+        return "check";
     }
 }
