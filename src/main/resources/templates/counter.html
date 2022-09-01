@@ -13,27 +13,14 @@
 		window.open('','_self').close();
 	}
     document.addEventListener("DOMContentLoaded", function() {
-	    Swal.fire({
-		    title: '참가 신청하시겠습니까?',
-		    showCancelButton: true,
-            icon: 'warning',
-		    confirmButtonColor: '#3085d6',
-		    cancelButtonColor: '#d33',
-		    confirmButtonText: '확인',
-		    cancelButtonText: '취소'
-	    }).then((result) => {
-		    Swal.fire(
-			    '감사합니다.',
-			    '1초 후 자동 종료됩니다.',
-			    'success'
-		    )
-		    if (result.isConfirmed) {
-			    axios.get("http://ec2-54-180-27-169.ap-northeast-2.compute.amazonaws.com:8080/confirm");
-		    }
-            setTimeout(() => {
-	            WinClose();
-            },2000)
-	    });
+	    Swal.fire(
+		    '감사합니다.',
+		    '1초 후 자동 종료됩니다.',
+		    'success'
+	    )
+	    setTimeout(() => {
+		    WinClose();
+	    },1800);
     });
 </script>
 </html>

@@ -18,11 +18,6 @@ public class CountController {
 
     @GetMapping("/counter")
     public String counter(HttpServletRequest req) {
-        return "counter";
-    }
-
-    @GetMapping("/confirm")
-    public String confirm(HttpServletRequest req) {
         try {
             log.info("{}", "새로운 회원이 요청하셨습니다");
             counterService.count();
