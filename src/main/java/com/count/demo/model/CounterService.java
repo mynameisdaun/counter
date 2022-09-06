@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
@@ -15,13 +14,20 @@ public class CounterService {
 
     private final CounterRepository counterRepository;
 
-    public Counter count() {
-        Counter counter = new Counter();
-        counter.setCreated(LocalDateTime.now());
+    public Counter count(String host) {
+        System.out.println("host: "+host);
+        if(!host.equals("ykim22") && !host.equals("scchae")) {
+            throw new IllegalStateException("");
+        }
+        Counter counter = new Counter(host, LocalDateTime.now());
         return counterRepository.save(counter);
     }
 
-    public List<Counter> check() {
-        return counterRepository.findAll();
+    public List<Counter> check(String host, LocalDateTime created) {
+        System.out.println("host: "+host);
+        if(!host.equals("ykim22") && !host.equals("scchae")) {
+            throw new IllegalStateException("");
+        }
+        return counterRepository.findAllByHostAndCreatedAfter(host, created);
     }
 }
